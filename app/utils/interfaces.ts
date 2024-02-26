@@ -12,7 +12,9 @@ export interface Usuario {
 export interface Companies{
     
 }
-
 export interface CreditCards{
-
+    type: string,
+    number: number,
+    expiration: number | string,
+    owner: string | string
 }

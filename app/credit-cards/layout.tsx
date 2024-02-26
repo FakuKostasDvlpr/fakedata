@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from 'react';
-import fetchUserData from './page'; // Importa la función de fetching
-import CardUser from '../components/CardUser';
+import fetchUserData from './page'; 
+import CreditCard from '../components/CreditCard';
 
 export const Layout = () => {
-    const [userData, setUserData] = useState(null);
+    const [creditCard, setCreditCard] = useState(null);
 
     const handleClick = async () => {
         try {
@@ -12,7 +12,7 @@ export const Layout = () => {
             if (response.ok) {
                 const data = await response.json();
                 if (data && data.data && data.data.length > 0) {
-                    setUserData(data.data[0]);
+                    setCreditCard(data.data[0]);
                 }
             } else {
                 console.error('Error fetching user data:', response.statusText); // sweet alert
@@ -28,10 +28,10 @@ export const Layout = () => {
                 <h2 className='font-bold text-2xl'>
                     Users<span className='font-bold text-2xl text-yellow-300'> Last 2024</span>
                 </h2>
-                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>USER</span></button>
-                {userData ? (
+                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>CARD</span> </button>
+                {creditCard ? (
                     <>
-                        <CardUser userData={userData} />
+                        <CreditCard CardData={creditCard}/>
                     </>
                 ) : (
                     <p>No hay usuario, genera uno.</p>
