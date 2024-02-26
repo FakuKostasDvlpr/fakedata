@@ -1,8 +1,10 @@
-export default function Home() {
-    return (
-      <div className="flex h-full flex-col items-center justify-between p-24">
-        <h1 className="text-yellow-400 font-bold text-3xl">Companies</h1>
-      </div>
-    );
-  }
-  
+export default async function fetchCompaniesData () {
+    try {
+        const URL = `https://fakerapi.it/api/v1/companies?_quantity=1`;
+        const response = await fetch(URL);
+        return response;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error;
+    }
+};
