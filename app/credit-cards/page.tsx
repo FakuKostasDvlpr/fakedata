@@ -1,8 +1,10 @@
-export default function Home() {
-    return (
-      <div className="flex h-full flex-col items-center justify-between p-24">
-        <h1 className="text-yellow-400 font-bold text-3xl">Credit CARD</h1>
-      </div>
-    );
-  }
-  
+  export default async function fetchCompanyData () {
+    try {
+        const URL = `https://fakerapi.it/api/v1/credit_cards?_quantity=1`;
+        const response = await fetch(URL);
+        return response; // Retorna la respuesta del fetch
+    } catch (error) {
+        console.error('Error fetching user data:', error); //sweet alert
+        throw error; // Lanza el error para que sea manejado en el componente que llama a esta función
+    }
+};
