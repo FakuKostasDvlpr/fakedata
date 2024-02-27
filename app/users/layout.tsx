@@ -1,12 +1,15 @@
 "use client"
-import React, { useState } from 'react';
-import fetchUserData from './page'; // Importa la función de fetching
+import React, { Suspense, useState } from 'react';
+import fetchUserData from './page'; 
 import CardUser from '../components/CardUser';
+import Loading from '../components/Loading';
 
 export const Layout = () => {
     const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleClick = async () => {
+        setLoading(true); // Inicia la carga
         try {
             const response = await fetchUserData();
             if (response.ok) {
@@ -19,6 +22,8 @@ export const Layout = () => {
             }
         } catch (error) {
             console.error('Error fetching user data:', error); // sweet alert
+        } finally {
+            setLoading(false); // Finaliza la carga, independientemente del resultado
         }
     };
 
@@ -28,13 +33,17 @@ export const Layout = () => {
                 <h2 className='font-bold text-2xl'>
                     Users<span className='font-bold text-2xl text-yellow-300'> Last 2024</span>
                 </h2>
-                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>USER</span></button>
-                {userData ? (
-                    <>
-                        <CardUser userData={userData} />
-                    </>
+                {/* <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>USER</span></button> */}
+                {loading ? ( // Muestra el indicador de carga si loading es true
+                    <Loading />
                 ) : (
-                    <p>No hay usuario, genera uno.</p>
+                    userData ? (
+                        <>
+                            <CardUser userData={userData} />
+                        </>
+                    ) : (
+                        < button onClick={handleClick}>No hay usuarios <span className='text-yellow-400 bg-white px-2 rounded-xl font-bold'>AGREGA UNO</span></button>
+                        )
                 )}
             </div>
         </>
