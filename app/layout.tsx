@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,16 +16,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Limpiar el script cuando el componente se desmonte
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-        <Header/>
+        <Header />
         <div>
           {children}
         </div>
       </body>
-
     </html>
   );
 }
