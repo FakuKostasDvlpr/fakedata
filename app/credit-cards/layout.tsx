@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import fetchUserData from './page'; 
 import CreditCard from '../components/CreditCard';
 import Loading from '../components/Loading';
+import { Alert } from '@mui/material';
 
 export const Layout = () => {
     const [creditCard, setCreditCard] = useState(null);
@@ -33,7 +34,7 @@ export const Layout = () => {
                 <h2 className='font-bold text-2xl'>
                     Users<span className='font-bold text-2xl text-yellow-300'> Last 2024</span>
                 </h2>
-                {/* <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>Credit Card</span> </button> */}
+                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>Credit Card</span> </button>
                 {loading ? (
                         <Loading />
                 ) : (
@@ -42,7 +43,7 @@ export const Layout = () => {
                         <CreditCard CardData={creditCard} /> 
                         </>
                     ) : (
-                       < button onClick={handleClick}>No hay Credit cards <span className='text-yellow-400 bg-white px-2 rounded-xl font-bold'>AGREGA UNA</span></button>
+                        <Alert severity="warning">Is empty, Generate new</Alert>
                     )
                 )}
             </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import fetchUserData from './page';
 import CardCompanies from '../components/CardCompanies';
 import Loading from '../components/Loading';
+import { Alert } from '@mui/material';
 
 export const Layout = () => {
     const [companiesData, setCompaniesData] = useState(null);
@@ -32,14 +33,7 @@ export const Layout = () => {
                 <h2 className='font-bold text-2xl'>
                     Companies<span className='font-bold text-2xl text-yellow-300'> Last 2024</span>
                 </h2>
-                {/* <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>COMPANIES</span></button> */}
-                {/* {companiesData ? (
-                    <>
-                        <CardCompanies companiesData={companiesData} />
-                    </>
-                ) : (
-                    <p>No hay companias, genera uno.</p>
-                )} */}
+                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Genereta New</button>
                 {loading ? (
                     <>
                         <Loading />
@@ -50,7 +44,7 @@ export const Layout = () => {
                             <CardCompanies companiesData={companiesData} />
                         </>
                     ):(
-                        < button onClick={handleClick}>No hay Companies <span className='text-yellow-400 bg-white px-2 rounded-xl font-bold'>AGREGA UNA</span></button>
+                        <Alert severity="warning">Is empty, Generate new</Alert>
                         )
                 )}
             </div>

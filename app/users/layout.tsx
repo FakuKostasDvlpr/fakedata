@@ -3,6 +3,7 @@ import React, { Suspense, useState } from 'react';
 import fetchUserData from './page'; 
 import CardUser from '../components/CardUser';
 import Loading from '../components/Loading';
+import { Alert } from '@mui/material';
 
 export const Layout = () => {
     const [userData, setUserData] = useState(null);
@@ -33,7 +34,7 @@ export const Layout = () => {
                 <h2 className='font-bold text-2xl'>
                     Users<span className='font-bold text-2xl text-yellow-300'> Last 2024</span>
                 </h2>
-                {/* <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>USER</span></button> */}
+                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4'>Generate a new <span className='text-yellow-400 font-bold'>USER</span></button>
                 {loading ? ( // Muestra el indicador de carga si loading es true
                     <Loading />
                 ) : (
@@ -42,7 +43,7 @@ export const Layout = () => {
                             <CardUser userData={userData} />
                         </>
                     ) : (
-                        < button onClick={handleClick}>No hay usuarios <span className='text-yellow-400 bg-white px-2 rounded-xl font-bold'>AGREGA UNO</span></button>
+                        <Alert severity="warning">Is empty, Generate new</Alert>
                         )
                 )}
             </div>
