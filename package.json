@@ -1,7 +1,11 @@
 {
   "name": "fakedataproyect",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "contributors": [
+    "https://github.com/FakuKostasDvlpr",
+    "https.//github.com/fedetomassini"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

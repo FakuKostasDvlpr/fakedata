@@ -18,7 +18,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
- background-color: #1b1b1b;
+  background-color: #1b1b1b;
+}
+
+.MuiPaper-root{
+  @apply bg-[#2D3250];
+  @apply font-semibold;
+  color: rgb(var(--foreground-rgb));
 }
 
 @layer utilities {

@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from 'react';
 import fetchUserData from './page';
-import CardCompanies from '../components/CardCompanies';
-import Loading from '../components/Loading';
+import CardCompanies from '../../components/CardCompanies';
+import Loading from '../../components/Loading';
 import { Alert } from '@mui/material';
 
 export const Layout = () => {
@@ -22,18 +22,17 @@ export const Layout = () => {
             }
         } catch (error) {
             console.error('Error fetching user data:', error); // sweet alert
-        } finally{
+        } finally {
             setLoading(false)
         }
     };
 
     return (
         <>
-            <div className='flex justify-center flex-col items-center gap-10'>
+            <div className='flex justify-center flex-col items-center gap-10 py-10'>
                 <h2 className='font-bold text-3xl'>
                     Companies
                 </h2>
-                <button onClick={handleClick} className='outline-dashed hover:outline-dashed hover:text-yellow-400 px-4 py-2'>Generate a new <span className='text-yellow-400 font-bold'>Company</span></button>
                 {loading ? (
                     <>
                         <Loading />
@@ -43,10 +42,11 @@ export const Layout = () => {
                         <>
                             <CardCompanies companiesData={companiesData} />
                         </>
-                    ):(
-                        <Alert severity="warning">Is empty, Generate new</Alert>
-                        )
+                    ) : (
+                        <Alert severity="warning">Is empty, generate new...</Alert>
+                    )
                 )}
+                <button onClick={handleClick} className='bg-[#2D3250] bg-opacity-50 font-medium px-4 py-2 rounded-md hover:scale-105 active:rounded-lg active:scale-95 transition-all delay-75 ease-in-out'>Generate</button>
             </div>
         </>
     );
