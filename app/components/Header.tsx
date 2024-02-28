@@ -9,7 +9,7 @@ const Header = () => {
             <nav className='p-10'>
                 <ul className='flex p-3 rounded-[12px] gap-10 bg-orange-500'>
                     <li>
-                        <Link href={`/`} className='active:bg-white active:text-black'>Home</Link>
+                        <Link href={`/`} className='cursor-pointer hover:bg-white hover:text-black font-bold px-8 rounded-xl'>Home</Link>
                     </li>
                     {LinkNav.map((link) => (
                         <li key={link} className='cursor-pointer hover:bg-white hover:text-black font-bold px-8 rounded-xl'>
